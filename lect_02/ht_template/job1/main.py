@@ -6,8 +6,7 @@ import os
 from flask import Flask, request
 from flask import typing as flask_typing
 
-import api
-import storage
+from lect_02.ht_template.job1 import api
 
 
 AUTH_TOKEN = os.environ.get("API_AUTH_TOKEN")
@@ -33,9 +32,17 @@ def main() -> flask_typing.ResponseReturnValue:
     """
     input_data: dict = request.json
     # TODO: implement me
+    date = input_data.get('date')
+    raw_dir = input_data.get('raw_dir')
+
+    if not date:
+        return {
+            "message": "date parameter missed",
+        }, 400
+
     # NB: you should handle the request and call these functions:
-    # api.get_sales()
-    # storage.save_to_disk()
+    api.get_sales(date=date)
+
 
     return {
                "message": "Data retrieved successfully from API",

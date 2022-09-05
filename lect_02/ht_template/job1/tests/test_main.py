@@ -15,26 +15,32 @@ class MainFunctionTestCase(TestCase):
         main.app.testing = True
         cls.client = main.app.test_client()
 
-    def test_return_400_date_param_missed_path_param_missed(self):
+
+    @mock.patch('lect_02.ht_template.job1.api.get_sales')
+    def test_return_400_date_param_missed_path_param_missed(
+            self,
+            get_sales_mock: mock.MagicMock
+        ):
         """
         Raise 400 HTTP code when no 'date' param
         """
         resp = self.client.post(
             '/',
             json={
-                'target_dir': '/foo/bar/',
-                # no 'date' set
+                'raw_dir': '/foo/bar/',
+                # no 'date' set!
             },
         )
 
         self.assertEqual(400, resp.status_code)
 
-    @mock.patch('main.storage.save_to_disk')
-    @mock.patch('main.api.get_sales')
+    def test_return_400_raw_dir_param_missed(self):
+        pass
+
+    @mock.patch('lect_02.ht_template.job1.api.get_sales')
     def test_api_get_sales_called(
             self,
-            get_sales_mock: mock.MagicMock,
-            save_to_disk: mock.MagicMock,
+            get_sales_mock: mock.MagicMock
     ):
         """
         Test whether api.get_sales is called with proper params
@@ -48,4 +54,11 @@ class MainFunctionTestCase(TestCase):
             },
         )
 
-        get_sales_mock.assert_called_with(fake_date)
+        get_sales_mock.assert_called_with(date=fake_date)
+
+    @mock.patch('lect_02.ht_template.job1.api.get_sales')
+    def test_return_201_when_all_is_ok(
+            self,
+            get_sales_mock: mock.MagicMock
+    ):
+        pass
