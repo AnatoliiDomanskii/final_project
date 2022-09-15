@@ -29,7 +29,7 @@ def print_schema():
 
 
 def read_row_group():
-    pa_table = pf_obj.read_row_group(0)
+    pa_table = pf_obj.read_row_group(0, columns=['client', ])
     pa_table: pyarrow.table.Table
     print(pa_table)
     print(pa_table.columns)
