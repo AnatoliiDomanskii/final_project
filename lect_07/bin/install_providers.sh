@@ -11,7 +11,6 @@ echo "Your active Python environment: $(which python)"
 echo
 
 pip install "apache-airflow-providers-google==8.3.0" --upgrade --constraint "${CONSTRAINT_URL}"
-pip install "apache-airflow-providers-google==8.3.0" --upgrade --constraint "${CONSTRAINT_URL}"
 pip install "apache-airflow-providers-apache-hdfs==3.1.0" --upgrade --constraint "${CONSTRAINT_URL}"
 pip install "apache-airflow-providers-apache-spark==3.0.0" --upgrade --constraint "${CONSTRAINT_URL}"
 pip install "apache-airflow-providers-amazon==5.0.0" --upgrade --constraint "${CONSTRAINT_URL}"
