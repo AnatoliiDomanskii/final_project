@@ -155,6 +155,10 @@ def stage4():
         )
 
 
+# like Spark:
+# stage5(stage4(stage3(...)))
+
+
 def stage5():
     file_path = os.path.join(
         STAGE4_DIR, os.listdir(STAGE4_DIR)[0]
