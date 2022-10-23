@@ -1,15 +1,12 @@
 """
 Sales processing pipeline
 """
-import os
 import datetime as dt
 
 from airflow import DAG
 from airflow.providers.google.cloud.operators.bigquery import BigQueryInsertJobOperator
 
 from table_defs.sales_csv import sales_csv
-
-# os.environ["no_proxy"] = "*"
 
 
 DEFAULT_ARGS = {
