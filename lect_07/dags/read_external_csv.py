@@ -1,12 +1,15 @@
 """
 Sales processing pipeline
 """
+import os
 import datetime as dt
 
 from airflow import DAG
 from airflow.providers.google.cloud.operators.bigquery import BigQueryInsertJobOperator
 
 from table_defs.sales_csv import sales_csv
+
+# os.environ["no_proxy"] = "*"
 
 
 DEFAULT_ARGS = {
@@ -34,7 +37,8 @@ dag.doc_md = __doc__
 transfer_from_data_lake_to_raw = BigQueryInsertJobOperator(
     task_id='transfer_from_data_lake_to_raw',
     dag=dag,
-    location='EU',
+    location='us-east1',
+    project_id='de2022-robot-dreams',
     configuration={
         "query": {
             "query": "{% include 'sql/transfer_from_data_lake_raw_to_bronze.sql' %}",

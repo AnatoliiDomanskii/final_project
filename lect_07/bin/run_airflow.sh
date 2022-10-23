@@ -6,4 +6,6 @@
 export AIRFLOW_HOME=/Users/hunting/projects/r_d/DE2022/lect_07/airflow
 # fixes issue on Mac:
 export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
+export no_proxy="*"
+
 airflow standalone
