@@ -120,3 +120,5 @@ client_id, first_name, last_name, email, registration_date, state
 
 ## Нотатки та підказки
 1. Поцікавтесь, що робить вираз `MERGE` в SQL. Можливо, він стане у нагоді.
+2. В контексті виконання цього завдання ви маєете спробувати на практиці наступні 
+дата інженерні підходи роботи з даними, а саме: Data Cleansing, Data Wrangling та Data Enrichment
