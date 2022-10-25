@@ -50,3 +50,21 @@ transfer_from_data_lake_to_raw = BigQueryInsertJobOperator(
         'project_id': "de2022-robot-dreams"
     }
 )
+
+transfer_from_dwh_bronze_to_dwh_silver = BigQueryInsertJobOperator(
+    task_id='transfer_from_dwh_bronze_to_dwh_silver',
+    dag=dag,
+    location='us-east1',
+    project_id='de2022-robot-dreams',
+    configuration={
+        "query": {
+            "query": "{% include 'sql/transfer_from_dwh_bronze_to_dwh_silver.sql' %}",
+            "useLegacySql": False,
+        }
+    },
+    params={
+        'project_id': "de2022-robot-dreams"
+    }
+)
+
+transfer_from_data_lake_to_raw >> transfer_from_dwh_bronze_to_dwh_silver
